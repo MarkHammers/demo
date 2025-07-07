@@ -61,7 +61,7 @@ public class UserController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<GetUserResource> getUserById(@PathVariable Long id) {
-        return ResponseEntity.ok(mapper.fromBinToDtoGet(facade.getUser(mapper.fromDtoToBinGet(id))));
+        return ResponseEntity.ok(mapper.fromBinToResourceGet(facade.getUser(mapper.fromDtoToBinGet(id))));
     }
 
     @Operation(summary = "Aggiorna un utente", description = "Aggiorna i dati di un utente esistente tramite il suo UUID")
@@ -95,7 +95,7 @@ public class UserController {
             @RequestParam(required = false) String email) {
 
         List<UserSearchResource> userResources = facade.userSearch(mapper.fromDtoToBinSearch(name, lastname, email))
-                .getUserSearchOutputBinList().stream().map(mapper::fromBinToDtoResource)
+                .getUserSearchOutputBinList().stream().map(mapper::fromBinToResourceSearch)
                 .toList();
 
         return ResponseEntity.ok(UserSearchResourceList.builder().userSearchResourceList(userResources).build());

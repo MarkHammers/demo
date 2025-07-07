@@ -4,7 +4,7 @@ import com.demo.demo.structure.command.create.CreateUserCommand;
 import com.demo.demo.structure.command.delete.DeleteUserCommand;
 import com.demo.demo.structure.command.get.GetUserCommand;
 import com.demo.demo.structure.command.insert.InsertUserCommand;
-import com.demo.demo.structure.command.research.ResearchUserCommand;
+import com.demo.demo.structure.command.research.UserSearchCommand;
 import com.demo.demo.structure.command.update.UpdateUserCommand;
 import com.demo.demo.structure.model.bin.*;
 import org.springframework.beans.factory.BeanFactory;
@@ -44,8 +44,8 @@ public class UserControllerFacade {
         command.execute();
     }
 
-    public ResearchUserListOutputBin userSearch(UserSearchInputBin userSearchInputBin) {
-        ResearchUserCommand command = beanFactory.getBean(ResearchUserCommand.class, userSearchInputBin);
+    public UserSearchListOutputBin userSearch(UserSearchInputBin userSearchInputBin) {
+        UserSearchCommand command = beanFactory.getBean(UserSearchCommand.class, userSearchInputBin);
         return command.execute();
     }
 

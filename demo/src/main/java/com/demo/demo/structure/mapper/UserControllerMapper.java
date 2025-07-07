@@ -15,7 +15,7 @@ public interface UserControllerMapper {
      CreateUserResource fromBinToDto(CreateUserOutputBin user);
 
      GetUserInputBin fromDtoToBinGet(Long id);
-     GetUserResource fromBinToDtoGet(GetUserOutputBin user);
+     GetUserResource fromBinToResourceGet(GetUserOutputBin user);
 
      UpdateUserInputBin fromDtoToBinUpdate(UpdateUserDto updateUserDto, Long id);
 
@@ -23,6 +23,6 @@ public interface UserControllerMapper {
 
      UserSearchInputBin fromDtoToBinSearch(String name, String lastname, String email);
 
-     UserSearchResource fromBinToDtoResource(UserSearchOutputBin researchUserListOutputBin);
+     UserSearchResource fromBinToResourceSearch(UserSearchOutputBin researchUserListOutputBin);
 
 }

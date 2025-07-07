@@ -11,6 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ResearchUserListOutputBin {
+public class UserSearchListOutputBin {
     private List<UserSearchOutputBin> userSearchOutputBinList;
 }

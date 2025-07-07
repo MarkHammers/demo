@@ -17,20 +17,20 @@ import java.util.stream.Stream;
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class ResearchUserCommand extends BaseCommand<ResearchUserListOutputBin> {
+public class UserSearchCommand extends BaseCommand<UserSearchListOutputBin> {
 
     private final UserSearchInputBin userSearchInputBin;
     private UserService userService;
     private UserRepositoryMapper mapper;
 
 
-    public ResearchUserCommand(UserSearchInputBin userSearchInputBin) {
+    public UserSearchCommand(UserSearchInputBin userSearchInputBin) {
         this.userSearchInputBin = userSearchInputBin;
     }
 
     @Override
-    public ResearchUserListOutputBin execute() {
-        ResearchUserListOutputBin result = new ResearchUserListOutputBin();
+    public UserSearchListOutputBin execute() {
+        UserSearchListOutputBin result = new UserSearchListOutputBin();
 
         String name = Optional.ofNullable(userSearchInputBin).map(UserSearchInputBin::getName).orElse(null);
         String lastname = Optional.ofNullable(userSearchInputBin).map(UserSearchInputBin::getLastname).orElse(null);
