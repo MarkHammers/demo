@@ -44,8 +44,8 @@ public class UserControllerFacade {
         command.execute();
     }
 
-    public ResearchUserListOutputBin researchUser(ResearchUserInputBin researchUserInputBin) {
-        ResearchUserCommand command = beanFactory.getBean(ResearchUserCommand.class, researchUserInputBin);
+    public ResearchUserListOutputBin userSearch(UserSearchInputBin userSearchInputBin) {
+        ResearchUserCommand command = beanFactory.getBean(ResearchUserCommand.class, userSearchInputBin);
         return command.execute();
     }
 

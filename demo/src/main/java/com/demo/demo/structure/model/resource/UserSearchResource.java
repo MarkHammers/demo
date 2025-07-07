@@ -5,12 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ResearchUserResourceList {
-    List<ResearchUserResource> researchUserResourceList;
+public class UserSearchResource {
+    private Long id;
+    private String name;
+    private String lastname;
+    private String email;
 }

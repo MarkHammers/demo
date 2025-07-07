@@ -6,15 +6,12 @@ import com.demo.demo.structure.model.bin.*;
 import com.demo.demo.structure.model.domain.User;
 import com.demo.demo.structure.service.UserService;
 import com.demo.demo.structure.util.UserSpecification;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -22,22 +19,22 @@ import java.util.stream.Stream;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ResearchUserCommand extends BaseCommand<ResearchUserListOutputBin> {
 
-    private final ResearchUserInputBin researchUserInputBin;
+    private final UserSearchInputBin userSearchInputBin;
     private UserService userService;
     private UserRepositoryMapper mapper;
 
 
-    public ResearchUserCommand(ResearchUserInputBin researchUserInputBin) {
-        this.researchUserInputBin = researchUserInputBin;
+    public ResearchUserCommand(UserSearchInputBin userSearchInputBin) {
+        this.userSearchInputBin = userSearchInputBin;
     }
 
     @Override
     public ResearchUserListOutputBin execute() {
         ResearchUserListOutputBin result = new ResearchUserListOutputBin();
 
-        String name = Optional.ofNullable(researchUserInputBin).map(ResearchUserInputBin::getName).orElse(null);
-        String lastname = Optional.ofNullable(researchUserInputBin).map(ResearchUserInputBin::getLastname).orElse(null);
-        String email = Optional.ofNullable(researchUserInputBin).map(ResearchUserInputBin::getEmail).orElse(null);
+        String name = Optional.ofNullable(userSearchInputBin).map(UserSearchInputBin::getName).orElse(null);
+        String lastname = Optional.ofNullable(userSearchInputBin).map(UserSearchInputBin::getLastname).orElse(null);
+        String email = Optional.ofNullable(userSearchInputBin).map(UserSearchInputBin::getEmail).orElse(null);
 
         Specification<User> spec = Stream.of(
                         UserSpecification.hasName(name),
@@ -47,7 +44,7 @@ public class ResearchUserCommand extends BaseCommand<ResearchUserListOutputBin> 
                 .reduce(Specification::and)
                 .orElse(null);
 
-        result.setResearchUserOutputBinList(userService.findAll(spec).stream()
+        result.setUserSearchOutputBinList(userService.findAll(spec).stream()
                 .map(mapper::fromEntityToBinResearch)
                 .toList());
 

@@ -2,13 +2,12 @@ package com.demo.demo.structure.controller;
 
 import com.demo.demo.structure.facade.UserControllerFacade;
 import com.demo.demo.structure.mapper.UserControllerMapper;
-import com.demo.demo.structure.model.bin.ResearchUserListOutputBin;
 import com.demo.demo.structure.model.dto.CreateUserDto;
 import com.demo.demo.structure.model.dto.UpdateUserDto;
 import com.demo.demo.structure.model.resource.CreateUserResource;
 import com.demo.demo.structure.model.resource.GetUserResource;
-import com.demo.demo.structure.model.resource.ResearchUserResource;
-import com.demo.demo.structure.model.resource.ResearchUserResourceList;
+import com.demo.demo.structure.model.resource.UserSearchResource;
+import com.demo.demo.structure.model.resource.UserSearchResourceList;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -91,16 +89,16 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Richiesta malformata")
     })
     @GetMapping("/search")
-    public ResponseEntity<ResearchUserResourceList> searchUsers(
+    public ResponseEntity<UserSearchResourceList> userSearch(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String lastname,
             @RequestParam(required = false) String email) {
 
-        List<ResearchUserResource> userResources = facade.researchUser(mapper.fromDtoToBinResearch(name, lastname, email))
-                .getResearchUserOutputBinList().stream().map(mapper::fromBinToDtoResource)
+        List<UserSearchResource> userResources = facade.userSearch(mapper.fromDtoToBinSearch(name, lastname, email))
+                .getUserSearchOutputBinList().stream().map(mapper::fromBinToDtoResource)
                 .toList();
 
-        return ResponseEntity.ok(ResearchUserResourceList.builder().researchUserResourceList(userResources).build());
+        return ResponseEntity.ok(UserSearchResourceList.builder().userSearchResourceList(userResources).build());
     }
 
     @Autowired

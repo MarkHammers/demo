@@ -1,17 +1,16 @@
-package com.demo.demo.structure.model.bin;
-
+package com.demo.demo.structure.model.resource;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ResearchUserInputBin {
-    private String name;
-    private String lastname;
-    private String email;
+public class UserSearchResourceList {
+    List<UserSearchResource> userSearchResourceList;
 }

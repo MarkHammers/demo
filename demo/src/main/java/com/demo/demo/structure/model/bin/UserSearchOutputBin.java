@@ -1,4 +1,4 @@
-package com.demo.demo.structure.model.resource;
+package com.demo.demo.structure.model.bin;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ResearchUserResource {
+public class UserSearchOutputBin {
     private Long id;
     private String name;
     private String lastname;

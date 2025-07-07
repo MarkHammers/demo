@@ -12,5 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class ResearchUserListOutputBin {
-    private List<ResearchUserOutputBin> researchUserOutputBinList;
+    private List<UserSearchOutputBin> userSearchOutputBinList;
 }

@@ -6,8 +6,7 @@ import com.demo.demo.structure.model.dto.CreateUserDto;
 import com.demo.demo.structure.model.dto.UpdateUserDto;
 import com.demo.demo.structure.model.resource.CreateUserResource;
 import com.demo.demo.structure.model.resource.GetUserResource;
-import com.demo.demo.structure.model.resource.ResearchUserResource;
-import com.demo.demo.structure.model.resource.ResearchUserResourceList;
+import com.demo.demo.structure.model.resource.UserSearchResource;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
@@ -22,8 +21,8 @@ public interface UserControllerMapper {
 
      DeleteUserInputBin fromDtoToBinDelete(Long id);
 
-     ResearchUserInputBin fromDtoToBinResearch(String name, String lastname, String email);
+     UserSearchInputBin fromDtoToBinSearch(String name, String lastname, String email);
 
-     ResearchUserResource fromBinToDtoResource(ResearchUserOutputBin researchUserListOutputBin);
+     UserSearchResource fromBinToDtoResource(UserSearchOutputBin researchUserListOutputBin);
 
 }
