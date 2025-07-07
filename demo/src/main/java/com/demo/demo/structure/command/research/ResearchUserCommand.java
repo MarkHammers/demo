@@ -46,7 +46,7 @@ public class ResearchUserCommand extends BaseCommand<ResearchUserListOutputBin> 
                 .reduce(Specification::and)
                 .orElse(null);
 
-        List<User> users = userService.findAll(spec); // usa il repository nel service
+        List<User> users = userService.findAll(spec);
 
         List<ResearchUserOutputBin> outputList = users.stream()
                 .map(mapper::fromEntityToBinResearch)
