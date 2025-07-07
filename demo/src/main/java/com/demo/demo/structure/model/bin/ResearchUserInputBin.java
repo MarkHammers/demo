@@ -1,4 +1,5 @@
-package com.demo.demo.structure.model.dto;
+package com.demo.demo.structure.model.bin;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UpdateUserDto {
+public class ResearchUserInputBin {
     private String name;
     private String lastname;
     private String email;

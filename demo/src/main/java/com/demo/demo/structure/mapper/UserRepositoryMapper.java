@@ -3,6 +3,7 @@ package com.demo.demo.structure.mapper;
 
 import com.demo.demo.structure.model.bin.CreateUserInputBin;
 import com.demo.demo.structure.model.bin.GetUserOutputBin;
+import com.demo.demo.structure.model.bin.ResearchUserOutputBin;
 import com.demo.demo.structure.model.domain.User;
 import org.mapstruct.Mapper;
 
@@ -10,4 +11,6 @@ import org.mapstruct.Mapper;
 public interface UserRepositoryMapper {
      User fromBinToEntity(CreateUserInputBin createUserInputBin);
      GetUserOutputBin fromEntityToBin(User user);
+     ResearchUserOutputBin fromEntityToBinResearch(User user);
+
 }

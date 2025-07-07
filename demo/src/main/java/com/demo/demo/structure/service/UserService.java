@@ -3,6 +3,7 @@ package com.demo.demo.structure.service;
 import com.demo.demo.structure.model.domain.User;
 import com.demo.demo.structure.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +29,9 @@ public class UserService {
 
     public void saveAll(List<User> users) {
         userRepository.saveAll(users);
+    }
+
+    public List<User> findAll(Specification<User> spec) {
+        return userRepository.findAll(spec);
     }
 }

@@ -2,10 +2,13 @@ package com.demo.demo.structure.controller;
 
 import com.demo.demo.structure.facade.UserControllerFacade;
 import com.demo.demo.structure.mapper.UserControllerMapper;
+import com.demo.demo.structure.model.bin.ResearchUserListOutputBin;
 import com.demo.demo.structure.model.dto.CreateUserDto;
 import com.demo.demo.structure.model.dto.UpdateUserDto;
 import com.demo.demo.structure.model.resource.CreateUserResource;
 import com.demo.demo.structure.model.resource.GetUserResource;
+import com.demo.demo.structure.model.resource.ResearchUserResource;
+import com.demo.demo.structure.model.resource.ResearchUserResourceList;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -18,6 +21,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
@@ -77,6 +83,24 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         facade.deleteUser(mapper.fromDtoToBinDelete(id));
         return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "Ricerca utenti", description = "Ricerca utenti con filtri dinamici")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Utenti trovati con successo"),
+            @ApiResponse(responseCode = "400", description = "Richiesta malformata")
+    })
+    @GetMapping("/search")
+    public ResponseEntity<ResearchUserResourceList> searchUsers(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String lastname,
+            @RequestParam(required = false) String email) {
+
+        List<ResearchUserResource> userResources = facade.researchUser(mapper.fromDtoToBinResearch(name, lastname, email))
+                .getResearchUserOutputBinList().stream().map(mapper::fromBinToDtoResource)
+                .toList();
+
+        return ResponseEntity.ok(ResearchUserResourceList.builder().researchUserResourceList(userResources).build());
     }
 
     @Autowired

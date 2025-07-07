@@ -4,6 +4,7 @@ import com.demo.demo.structure.command.create.CreateUserCommand;
 import com.demo.demo.structure.command.delete.DeleteUserCommand;
 import com.demo.demo.structure.command.get.GetUserCommand;
 import com.demo.demo.structure.command.insert.InsertUserCommand;
+import com.demo.demo.structure.command.research.ResearchUserCommand;
 import com.demo.demo.structure.command.update.UpdateUserCommand;
 import com.demo.demo.structure.model.bin.*;
 import org.springframework.beans.factory.BeanFactory;
@@ -43,9 +44,13 @@ public class UserControllerFacade {
         command.execute();
     }
 
+    public ResearchUserListOutputBin researchUser(ResearchUserInputBin researchUserInputBin) {
+        ResearchUserCommand command = beanFactory.getBean(ResearchUserCommand.class, researchUserInputBin);
+        return command.execute();
+    }
+
     @Autowired
     public void setBeanFactory(BeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
-
 }
