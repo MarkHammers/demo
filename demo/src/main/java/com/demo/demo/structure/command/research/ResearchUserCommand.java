@@ -33,6 +33,7 @@ public class ResearchUserCommand extends BaseCommand<ResearchUserListOutputBin> 
 
     @Override
     public ResearchUserListOutputBin execute() {
+        ResearchUserListOutputBin result = new ResearchUserListOutputBin();
 
         String name = Optional.ofNullable(researchUserInputBin).map(ResearchUserInputBin::getName).orElse(null);
         String lastname = Optional.ofNullable(researchUserInputBin).map(ResearchUserInputBin::getLastname).orElse(null);
@@ -46,14 +47,9 @@ public class ResearchUserCommand extends BaseCommand<ResearchUserListOutputBin> 
                 .reduce(Specification::and)
                 .orElse(null);
 
-        List<User> users = userService.findAll(spec);
-
-        List<ResearchUserOutputBin> outputList = users.stream()
+        result.setResearchUserOutputBinList(userService.findAll(spec).stream()
                 .map(mapper::fromEntityToBinResearch)
-                .toList();
-
-        ResearchUserListOutputBin result = new ResearchUserListOutputBin();
-        result.setResearchUserOutputBinList(outputList);
+                .toList());
 
         return result;
     }
