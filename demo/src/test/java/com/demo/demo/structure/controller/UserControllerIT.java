@@ -13,7 +13,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@SpringBootTest(properties = "spring.profiles.active=test")
+/** qua per mancanza di tempo avrei dovuto specificare un file di properties per unsare H2 come Db in memory per i test
+ * ma sta utilizzando il DB tirato su con Docker */
+@SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerIT {
 
